@@ -12,12 +12,19 @@ class colorController extends Controller
 {
     public function index()
     {
-        return new Collection(color::all());
+        return color::all();
     }
 
     public function store(Request $request)
     {
-       return new colorResource($request->all());
+        // $a=new color();
+        // $a->_id=$request->_id;
+        // $a->colorCode= $request->colorCode;
+        // $a->title=$request->title;
+        // $a->save();
+        // return $a;
+        return new colorResource(color::create($request->all()));
+
     }
 
     public function show(color $color)

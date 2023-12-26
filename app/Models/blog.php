@@ -9,7 +9,9 @@ class blog extends Model
 {
     use HasFactory;
     protected $table = 'blog';
+    // protected $dateFormat = 'Y-m-d\H:i:s.u\Z';
     protected $fillable=[
+        '_id',
         'title',
         'description',
         'category',
@@ -21,7 +23,13 @@ class blog extends Model
         'author',
         'images',
     ];
+    protected $casts = [
+        'likes' => 'json',
+        'dislikes'=>'json',
+        'images'=>'json',
+    ];
 
+   
     public function User(){
         return $this->belongsTo(User::class);
     }

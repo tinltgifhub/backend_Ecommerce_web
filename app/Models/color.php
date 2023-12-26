@@ -9,9 +9,11 @@ class color extends Model
 {
     use HasFactory;
     protected $table = 'color';
+
     protected $fillable=[
+        '_id',
         'title',
-        'codeColor',
+        'colorCode',
     ];
 
     public function product()

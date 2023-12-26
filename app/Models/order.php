@@ -9,8 +9,15 @@ class order extends Model
 {
     use HasFactory;
     protected $table = 'order';
+
+
     protected $fillable = [
-        'title','order_items','shipping_info','total_price','total_price_after_discount','order_status'
+        '_id','user','orderItems','shippingInfo','totalPrice','totalPriceAfterDiscount','orderStatus'
+    ];
+    protected $casts = [
+        'orderItems' => 'json',
+        'shippingInfo'=>'json',
+        
     ];
 
     public function user(){

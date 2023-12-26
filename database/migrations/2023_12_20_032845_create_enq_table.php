@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('enq', function (Blueprint $table) {
-            $table->id();
+
+            $table->string("_id")->unique();
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('mobile')->unique();

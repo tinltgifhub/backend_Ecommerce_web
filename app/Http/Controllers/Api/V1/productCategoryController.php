@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\Collection;
+use App\Http\Resources\V1\productCategoryCollection;
 use App\Http\Resources\V1\productCategoryResource;
+use App\Http\Resources\V1\productResource;
 use App\Models\product;
 use App\Models\productCategory;
 use Illuminate\Http\Request;
@@ -17,7 +19,7 @@ class productCategoryController extends Controller
      */
     public function index()
     {
-        return new Collection(productCategory::all());
+        return productCategory::all();
     }
 
 
@@ -30,7 +32,7 @@ class productCategoryController extends Controller
      */
     public function store(Request $request)
     {
-       return new productCategoryResource(productCategory::created($request->all()));
+        return new productCategoryResource(productCategory::create($request->all()));
     }
 
     /**

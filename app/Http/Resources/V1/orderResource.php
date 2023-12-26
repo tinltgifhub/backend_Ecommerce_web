@@ -15,13 +15,13 @@ class orderResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'user_id' => $this->user_id,
-            'order_items' => json_decode($this->order_items),
-            'shipping_info' => json_decode($this->shipping_info),
-            'total_price' => $this->total_price,
-            'total_price_after_discount' => $this->total_price_after_discount,
-            'order_status' => $this->order_status,
+            '_id'=>$this->_id,
+            'user' => $this->user,
+            'orderItems' => $this->orderItems,
+            'shippingInfo' => $this->shippingInfo,
+            'totalPrice' => $this->totalPrice,
+            'totalPriceAfterDiscount' => $this->totalPriceAfterDiscount,
+            'orderStatus' => $this->orderStatus,
         ];
     }
 }

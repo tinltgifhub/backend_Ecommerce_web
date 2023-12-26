@@ -13,12 +13,12 @@ class enqController extends Controller
 {
     public function index()
     {
-        return new Collection(enq::all());
+        return enq::all();
     }
 
     public function store(Request $request)
     {
-       return new enqResource($request->all());
+        return new enqResource(enq::create($request->all()));
     }
 
     public function show(enq $enq)

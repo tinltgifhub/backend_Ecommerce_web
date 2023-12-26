@@ -9,7 +9,9 @@ class blogCategory extends Model
 {
     use HasFactory;
     protected $table = 'blog_category';
+
     protected $fillable=[
+        '_id',
         'title',
     ];
 }

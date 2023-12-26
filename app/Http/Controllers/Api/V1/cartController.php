@@ -12,12 +12,13 @@ class cartController extends Controller
 {
     public function index()
     {
-        return new Collection(cart::all());
+        cart::all();
     }
 
     public function store(Request $request)
     {
-       return new cartResource($request->all());
+        return new cartResource(cart::create($request->all()));
+
     }
 
     public function show(cart $cart)

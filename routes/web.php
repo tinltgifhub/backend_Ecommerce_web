@@ -23,17 +23,20 @@ Route::get('/setup',function(){
     $credentials=[
         'email'=>'admin@admin.com',
         'password' => '123456',
+        'mobile'=>123456789,
+        'cart'=>[],
     ];
 
     if(!Auth::attempt($credentials)){
         $user=new \App\Models\User();
         $user->name='Admin';
         $user->email=$credentials['email'];
+        $user->mobile=$credentials['mobile'];
+        $user->cart=$credentials['cart'];
         $user->password=bcrypt($credentials['password']);
         $user->save();
 
-        
-        if(Auth::attempt($credentials)){
+        // if(Auth::attempt($credentials)){
             $adminToken = $user->createToken('admin-token',['create','update','delete']);
             $updateToken = $user->createToken('update-token',['create','update']);
             $basicToken = $user->createToken('basic-token');
@@ -45,6 +48,6 @@ Route::get('/setup',function(){
                 'update'=>$updateToken->plainTextToken,
                 'basic'=>$basicToken->plainTextToken,
             ];
-        }
+        // }
     }
 });

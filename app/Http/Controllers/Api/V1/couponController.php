@@ -12,12 +12,13 @@ class couponController extends Controller
 {
     public function index()
     {
-        return new Collection(coupon::all());
+        return coupon::all();
     }
 
     public function store(Request $request)
     {
-       return new couponResource($request->all());
+        return new couponResource(coupon::create($request->all()));
+
     }
 
     public function show(coupon $coupon)

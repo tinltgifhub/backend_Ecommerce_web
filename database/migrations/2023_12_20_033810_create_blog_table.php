@@ -14,25 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('blog', function (Blueprint $table) {
-            $table->id();
+
+            $table->string("_id")->unique();
             $table->string('title');
             $table->text('description');
             $table->string('category');
-            $table->integer('num_Views')->default(0);
-            $table->boolean('is_Liked')->default(false);
-            $table->boolean('is_Disliked')->default(false);
+            $table->integer('numViews')->default(0);
+            $table->boolean('isLiked')->default(false);
+            $table->boolean('isDisliked')->default(false);
+            $table->jsonb('likes');
+            $table->jsonb('dislikes');
             $table->string('author')->default('Admin');
-            $table->timestamps();
-        });
-        Schema::create('blog_likes', function (Blueprint $table) {
-            $table->foreignId('blog_id')->constrained('blog')->onDelete('cascade');
-            $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
-            $table->timestamps();
-        });
-
-        Schema::create('blog_dislikes', function (Blueprint $table) {
-            $table->foreignId('blog_id')->constrained('blog')->onDelete('cascade');
-            $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
+            // $table->json('images');
             $table->timestamps();
         });
     }
@@ -44,8 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_likes');
-        Schema::dropIfExists('blog_dislikes');
         Schema::dropIfExists('blog');
     }
 };

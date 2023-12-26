@@ -10,7 +10,8 @@ class enq extends Model
     use HasFactory;
     protected $table = 'enq';
 
+
     protected $fillable = [
-        'name','email','mobile','comment','status'
+        '_id', 'name','email','mobile','comment','status'
     ];
 }

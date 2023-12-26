@@ -15,7 +15,7 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
+            '_id'=>$this->_id,
             'name'=>$this->name,
             'email'=>$this->email,
             'password'=>$this->password,
@@ -25,6 +25,7 @@ class UserResource extends JsonResource
             'cart'=>$this->cart,
             'address'=>$this->address,
             'wishlist'=>$this->wishlist,
+            'refreshToken'=>$this->refreshToken,
         ];
     }
 }

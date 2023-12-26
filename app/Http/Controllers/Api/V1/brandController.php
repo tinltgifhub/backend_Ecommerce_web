@@ -12,12 +12,13 @@ class brandController extends Controller
 {
     public function index()
     {
-        return new Collection(brand::all());
+        return brand::all();
     }
 
     public function store(Request $request)
     {
-       return new brandResource($request->all());
+        return new brandResource(brand::create($request->all()));
+
     }
 
     public function show(brand $brand)

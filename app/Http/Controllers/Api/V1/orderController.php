@@ -11,12 +11,13 @@ class orderController extends Controller
 {
     public function index()
     {
-        return new Collection(order::all());
+        return order::all();
     }
 
     public function store(Request $request)
     {
-       return new orderResource($request->all());
+        return new orderResource(order::create($request->all()));
+
     }
 
     public function show(order $order)

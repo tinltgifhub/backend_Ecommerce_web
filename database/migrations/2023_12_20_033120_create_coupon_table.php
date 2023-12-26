@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('coupon', function (Blueprint $table) {
-            $table->id();
+
+            $table->string("_id")->unique();
             $table->string('name')->unique();
-            $table->date('expiry');
+            $table->date('expiry')->nullable();
             $table->string('discount');
             $table->timestamps();
         });

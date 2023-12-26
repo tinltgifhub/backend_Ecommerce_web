@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product', function (Blueprint $table) {
-            $table->id();
+
+            $table->string("_id")->unique();
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->text('description');
@@ -23,13 +24,14 @@ return new class extends Migration
             $table->integer('quantity')->nullable();
             $table->integer('sold')->default(0);
             $table->string('brand')->nullable();
-            // Tạo cột JSON để lưu trữ các hình ảnh
-            $table->json('images');
             $table->string('tag')->nullable();
 
-            $table->foreignId('color_id')->nullable()->constrained('color')->onDelete('cascade');
+            $table->jsonb('images');
+            $table->jsonb('color');
+            // $table->foreignId('color_id')->nullable()->constrained('color')->onDelete('cascade');
 
-            $table->foreignId('users_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->jsonb('ratings');
+            // $table->foreignId('users_id')->nullable()->constrained('users')->onDelete('cascade');
 
             $table->string('totalRating')->default(0);
             $table->timestamps();

@@ -13,8 +13,10 @@ class productController extends Controller
 
     public function index()
     {
-        return new productCollection(product::all());
-
+        // $products = product::all();
+        // $responseData = ['data' => $products->toArray()];
+        return product::all();
+        return new productCollection (product::all());
     }
 
 
@@ -23,9 +25,10 @@ class productController extends Controller
         return new productResource(product::create($request->all()));
     }
 
-    public function show(product $product)
+    public function show( $id)
     {
-        return new productResource($product);
+        $product = product::where('_id', $id)->first();
+        return  $product;
     }
 
 

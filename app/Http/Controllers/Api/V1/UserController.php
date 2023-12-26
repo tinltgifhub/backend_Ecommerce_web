@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return new UserCollection(User::all());
+        return User::all();
     }
 
     public function store(Request $request)
@@ -86,22 +86,25 @@ class UserController extends Controller
         return response()->json(['message' => 'Created successfully']);
     }
 
-
     public function updateBulk(Request $request)
     {
-        $ids = $request->input('ids');
-        $dataToUpdate = $request->input('data');
-
-        $users = User::whereIn('id', $ids)->get();
-
-        foreach ($users as $user) {
-            $newData = $dataToUpdate[$user->id] ?? [];
-
-            $user->update(array_merge($user->toArray(), $newData));
-        }
-
-        return response()->json(['message' => 'Updated successfully']);
+        $requestData = $request->json()->all();
+        $ids = $requestData[0]['id'] ?? [];
+        $dataToUpdate = $requestData['data'];
+        return response()->json(count($requestData));
+        // if (isset($requestData['data'])) {
+        //     $ids = $requestData['ids'] ?? [];
+        //     $dataToUpdate = $requestData['data'];
+    
+        //     // Thực hiện logic cập nhật
+            // User::whereIn('id', $ids)->update($dataToUpdate);
+    
+        //     return response()->json(['message' => 'Updated successfully']);
+        // } else {
+        //     return response()->json(['message' => 'Invalid request format'], 400);
+        // }
     }
+    
 
 
     public function destroyBulk(Request $request)

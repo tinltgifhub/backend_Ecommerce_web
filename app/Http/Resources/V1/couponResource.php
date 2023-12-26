@@ -15,7 +15,8 @@ class couponResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            '_id'=>$this->_id,
+
             'name' => $this->name,
             'expiry' => $this->expiry,
             'discount' => $this->discount,

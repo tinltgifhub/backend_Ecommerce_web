@@ -14,13 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('order', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->json('order_items');
-            $table->json('shipping_info');
-            $table->decimal('total_price', 10, 2);
-            $table->decimal('total_price_after_discount', 10, 2);
-            $table->string('order_status')->default('Ordered');
+
+            $table->string("_id")->unique();
+            $table->string("user")->unique();
+            // $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->json('orderItems');
+            $table->json('shippingInfo');
+            $table->decimal('totalPrice');
+            $table->decimal('totalPriceAfterDiscount');
+            $table->string('orderStatus')->default('Ordered');
             $table->timestamps();
         });
     }

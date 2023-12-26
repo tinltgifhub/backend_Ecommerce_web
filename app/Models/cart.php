@@ -9,12 +9,19 @@ class cart extends Model
 {
     use HasFactory;
     protected $table = 'cart';
+
     protected $fillable=[
+        '_id',
+        'userId',
+        'productId',
         'quantity',
         'price',
         'color',
     ];
-
+    protected $casts = [
+        'productId' => 'json',
+        'color'=>'json',
+    ];
     public function User(){
         return $this->belongsTo(User::class);
     }

@@ -12,12 +12,13 @@ class blogController extends Controller
 {
     public function index()
     {
-        return new Collection(blog::all());
+        return blog::all();
     }
 
     public function store(Request $request)
     {
-       return new blogResource($request->all());
+        return new blogResource(blog::create($request->all()));
+
     }
 
     public function show(blog $blog)
